@@ -47,7 +47,9 @@ dependencies {
     //implementation("androidx.room:room-runtime:$room_version")
     //annotationProcessor("androidx.room:room-compiler:$room_version")
     implementation ("com.github.yuriy-budiyev:code-scanner:2.3.2")
-
+    implementation ("com.google.code.gson:gson:2.8.6")
+    implementation ("androidx.room:room-runtime:2.5.0")
+    annotationProcessor ("androidx.room:room-compiler:2.5.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

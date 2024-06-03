@@ -59,7 +59,9 @@ public class QRScanner extends AppCompatActivity {
 
             String wifiString = result.getText();
             Pattern pattern = Pattern.compile("WIFI:S:(.*?);T:(.*?);P:(.*?);");
+            Pattern pattern2 = Pattern.compile("WIFI:T:(.*?);S:(.*?);P:(.*?);");
             Matcher matcher = pattern.matcher(wifiString);
+            Matcher matcher2 = pattern2.matcher(wifiString);
 
             if (matcher.find()) {
                 String ssid = matcher.group(1);
@@ -69,8 +71,18 @@ public class QRScanner extends AppCompatActivity {
                 Log.d("loggg", "Type: " + type);
                 Log.d("loggg", "Password: " + password);
                 postData(ssid,type,password);
-            } else {
+            }else if(matcher2.find()){
+                String ssid = matcher2.group(2);
+                String type = matcher2.group(1);
+                String password = matcher2.group(3);
+                Log.d("loggg", "SSID: " + ssid);
+                Log.d("loggg", "Type: " + type);
+                Log.d("loggg", "Password: " + password);
+                postData(ssid,type,password);
+            }
+            else {
                 Toast.makeText(this, "Pattern not found", Toast.LENGTH_SHORT);
+                Log.d("loggg", "" + result.getText());
             }
         }));
         codeScanner.setErrorCallback(error -> runOnUiThread(() -> {
